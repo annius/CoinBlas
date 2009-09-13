@@ -2,19 +2,16 @@
 # All Rights Reserved.
 # This file is distributed under the Common Public License.
 
-## $Id: Makefile.am 735 2006-06-04 06:10:05Z andreasw $
+## $Id$
 
 AUTOMAKE_OPTIONS = foreign
 
 EXTRA_DIST = get.blas INSTALL.BLAS
 
-if SKIPMAKE
-  noinst_LTLIBRARIES =
-else
-  noinst_LTLIBRARIES = libcoinblas.la
-endif
+thirdpartylibdir = $(prefix)/lib/ThirdParty
+thirdpartylib_LTLIBRARIES = libcoinblas.la
 
-nodist_libcoinblas_la_SOURCES = \
+libcoinblas_la_SOURCES = \
 	dasum.f \
 	daxpy.f \
 	dcopy.f \
@@ -54,6 +51,12 @@ nodist_libcoinblas_la_SOURCES = \
 	xerbla.f
 
 libcoinblas_la_LDFLAGS = $(LT_LDFLAGS)
+
+addlibsdir = $(prefix)/share/doc/coin/ThirdParty/Blas
+addlibs_DATA = blas_addlibs.txt README
+
+pkgconfiglibdir = $(prefix)/lib/ThirdParty/pkgconfig
+pkgconfiglib_DATA = blas.pc
 
 ########################################################################
 #                         Maintainer Stuff                             #
